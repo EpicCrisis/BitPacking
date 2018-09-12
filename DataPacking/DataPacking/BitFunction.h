@@ -4,7 +4,6 @@
 class BitFunction
 {
 public:
-
 	BitFunction();
 
 	void reset();

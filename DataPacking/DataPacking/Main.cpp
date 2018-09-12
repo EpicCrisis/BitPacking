@@ -13,6 +13,8 @@ int main(void)
 {
 	int range[] = { 4, 1, 5, 1 };
 
+	//bit.m_data = (bit.m_data << 1) | bit.num1;
+
 	bit.m_data = bit.num0;
 	bit.m_data = bit.m_data << 1;
 
