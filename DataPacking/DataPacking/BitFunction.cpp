@@ -1,38 +1,66 @@
 
 #include "BitFunction.h"
+#include <iostream>
+#include <bitset>
 
 BitFunction::BitFunction()
 {
-}
-
-void BitFunction::reset()
-{
-	m_data = 0;
-}
-
-void BitFunction::set(int _location, bool _flag) // Location is started at 0
-{
-	// If bool is same, skip checking.
-	if (_flag == get(_location))
+	for (int i = 0; i < DATACOUNT; ++i)
 	{
-		return;
+		_value[i] = 0;
 	}
 
-	m_data += (1 << _location) * (_flag ? 1 : -1);
+	InitializeBitRange();
 }
 
-bool BitFunction::get(int _location)
+BitFunction::BitFunction(unsigned int num0, unsigned int num1, unsigned int num2, unsigned int num3)
 {
-	// Start from the largest bit, at 32 then go down to 0.
-	return (m_data >> _location) & 1;
+	_value[0] = num0;
+	_value[1] = num1;
+	_value[2] = num2;
+	_value[3] = num3;
+
+	InitializeBitRange();
 }
 
-int BitFunction::getData()
+BitFunction::~BitFunction()
 {
-	return m_data;
 }
 
-void BitFunction::setData(int value)
+void BitFunction::InitializeBitRange()
 {
-	m_data = value;
+	_bit[0] = 4;
+	_bit[1] = 1;
+	_bit[2] = 5;
+	_bit[3] = 1;
+}
+
+_bitdata BitFunction::Pack()
+{
+	_bitdata bitValue = 0;
+
+	for (int i = 0; i < DATACOUNT; ++i)
+	{
+		bitValue = (bitValue << _bit[i]) | _value[i];
+	}
+
+	return _bitdata();
+}
+
+void BitFunction::UnPack(_bitdata data)
+{
+	// Count the values in reverse order.
+	for (int i = DATACOUNT - 1; i >= 0; --i)
+	{
+		_value[i] = data & ~(((_bitdata)0 - 1) << _bit[i]);
+		data = data >> _bit[i];
+	}
+}
+
+void BitFunction::Print()
+{
+	for (int i = 0; i < DATACOUNT; ++i)
+	{
+		std::cout << _value[i] << std::endl;
+	}
 }

@@ -2,33 +2,49 @@
 #include "BitFunction.h"
 #include <iostream>
 
-BitFunction bit;
-
-#define NUM0_BITS 4
-#define NUM1_BITS 1
-#define NUM2_BITS 5
-#define NUM3_BITS 1
-
 int main(void)
 {
-	int range[] = { 4, 1, 5, 1 };
+	std::cout << "[SERVER] " << std::endl;
+	std::cout << "[SERVER] Server initialized" << std::endl;
+	std::cout << "[SERVER] " << std::endl;
 
-	bit.m_data = bit.num0;
-	bit.m_data = bit.m_data << 1;
+	BitFunction* clientA = new BitFunction(3, 1, 30, 0);
+	std::cout << "[SERVER] Client A initialized with values" << std::endl;
+	std::cout << "{" << std::endl;
+	clientA->Print();
+	std::cout << "}" << std::endl;
+	std::cout << "[SERVER] " << std::endl;
 
-	bit.m_data |= bit.num1;
-	bit.m_data = bit.m_data << 5;
+	std::cout << "[SERVER] Packaging..." << std::endl;
+	unsigned short clientData = clientA->Pack();
+	std::cout << "[SERVER] Packed Data: " << clientData << std::endl;
+	std::cout << "[SERVER] " << std::endl;
 
-	bit.m_data |= bit.num2;
-	bit.m_data = bit.m_data << 1;
+	BitFunction* clientB = new BitFunction();
+	std::cout << "[SERVER] Client B initialized with values" << std::endl;
+	std::cout << "{" << std::endl;
+	clientB->Print();
+	std::cout << "}" << std::endl;
+	std::cout << "[SERVER] " << std::endl;
 
-	bit.m_data |= bit.num3;
-	std::cout << bit.m_data << std::endl;
+	std::cout << "[SERVER] Sent packed data from Client A to Client B..." << std::endl;
+	std::cout << "[SERVER] " << std::endl;
 
-	// Pack num0, num1, num2 into data variable.
-	// Unpack from "data" variable.
-	unsigned int retrieveNum0;
-	// std::cout << retrieveNum0 << std::endl;
+	std::cout << "[SERVER] Unpackaging..." << std::endl;
+	clientB->UnPack(clientData);
+	std::cout << "[SERVER] Unpacked Data:" << std::endl;
+	std::cout << "{" << std::endl;
+	clientB->Print();
+	std::cout << "}" << std::endl;
+	std::cout << "[SERVER] " << std::endl;
 
+	std::cout << "[SERVER] " << std::endl;
+	std::cout << "[SERVER] End of operation" << std::endl;
+	std::cout << std::endl;
 	system("PAUSE");
+
+	delete clientA;
+	delete clientB;
+
+	return 0;
 };
