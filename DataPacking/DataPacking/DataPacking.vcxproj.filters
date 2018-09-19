@@ -18,12 +18,12 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BitFunction.cpp">
+    <ClCompile Include="BitPackage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BitFunction.h">
+    <ClInclude Include="BitPackage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
