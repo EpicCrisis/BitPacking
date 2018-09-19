@@ -1,36 +1,66 @@
 
-#include "BitFunction.h"
 #include <iostream>
-
-BitFunction bit;
-
-#define NUM0_BITS 4
-#define NUM1_BITS 1
-#define NUM2_BITS 5
-#define NUM3_BITS 1
 
 int main(void)
 {
-	int range[] = { 4, 1, 5, 1 };
+	// Value for the bit.
+	unsigned int number[4];
+	number[0] = 3; // 0~15 bits
+	number[1] = 1; // 0~1 bits
+	number[2] = 30; // 0~31 bits
+	number[3] = 0; // 0~1 bits
 
-	//bit.m_data = (bit.m_data << 1) | bit.num1;
+	// Needed to count the amount of "shifting" to reach a specific bit.
+	unsigned int bitRequired[4];
+	bitRequired[0] = 4;
+	bitRequired[1] = 1;
+	bitRequired[2] = 5;
+	bitRequired[3] = 1;
 
-	bit.m_data = bit.num0;
-	bit.m_data = bit.m_data << 1;
+	// Store the values.
+	unsigned int DATA;
 
-	bit.m_data |= bit.num1;
-	bit.m_data = bit.m_data << 5;
+	// ====== DATA PACKING ====== //
+	// Without using a "for loop", just increment index.
+	// After storing the initial bit, the DATA needs to be shifted for an extra space to store the next bit(s).
+	int i = 0;
+	DATA = DATA | number[i];
+	++i;
 
-	bit.m_data |= bit.num2;
-	bit.m_data = bit.m_data << 1;
+	DATA = DATA << bitRequired[i];
+	DATA = DATA | number[i];
+	++i;
 
-	bit.m_data |= bit.num3;
-	std::cout << bit.m_data << std::endl;
+	DATA = DATA << bitRequired[i];
+	DATA = DATA | number[i];
+	++i;
 
-	// Pack num0, num1, num2 into data variable.
-	// Unpack from "data" variable.
-	unsigned int retrieveNum0;
-	// std::cout << retrieveNum0 << std::endl;
+	DATA = DATA << bitRequired[i];
+	DATA = DATA | number[i];
+	++i;
+	// ====== DATA PACKING ====== //
+
+	// ====== DATA UNPACKING ====== //
+	// Using the "AND" operator to extract the bit.
+	// Using "power of" operation in order to obtain the necessary bit to compare and extract.
+	// 2^5=32 : 32-bits
+	i = 3;
+	unsigned int enum3 = DATA & (1 << bitRequired[i] - 1);
+	//unsigned int enum3 = DATA & (2 ^ bitRequired[i] - 1);
+	DATA = DATA >> bitRequired[i];
+
+	--i;
+	unsigned int enum2 = DATA & (2 ^ bitRequired[i] - 1);
+	DATA = DATA >> bitRequired[i];
+
+	--i;
+	unsigned int enum1 = DATA & (2 ^ bitRequired[i] - 1);
+	DATA = DATA >> bitRequired[i];
+
+	--i;
+	unsigned int enum0 = DATA & (2 ^ bitRequired[i] - 1);
+	DATA = DATA >> bitRequired[i];
+	// ====== DATA UNPACKING ====== //
 
 	system("PAUSE");
 };
