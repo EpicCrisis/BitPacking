@@ -2,6 +2,8 @@
 #include "BitPackage.h"
 #include <iostream>
 
+// Assignment1 : Implement UIntPacker and UIntSplitter classes, the headers of the classes are shown as following
+
 int main(void)
 {
 	// Create new package with hardcode values and print the correct values.

@@ -117,9 +117,13 @@
   <ItemGroup>
     <ClCompile Include="BitPackage.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="UIntPacker.cpp" />
+    <ClCompile Include="UIntSplitter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitPackage.h" />
+    <ClInclude Include="UIntPacker.h" />
+    <ClInclude Include="UIntSplitter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

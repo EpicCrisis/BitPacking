@@ -21,9 +21,21 @@
     <ClCompile Include="BitPackage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UIntPacker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIntSplitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitPackage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIntPacker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIntSplitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
