@@ -11,10 +11,16 @@ UIntPacker::~UIntPacker()
 
 bool UIntPacker::Pack(unsigned int value, unsigned int bitCount)
 {
-	return false;
+	m_data = m_data << bitCount;
+	m_data = m_data | value;
+
+	return m_data;
 }
 
 unsigned int UIntPacker::Extract(unsigned int bitCount)
 {
-	return 0;
+	m_data = m_data & (1 << bitCount - 1);
+	m_data = m_data >> bitCount;
+
+	return m_data;
 }

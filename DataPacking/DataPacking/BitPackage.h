@@ -13,7 +13,6 @@ public:
 
 	// Set the values for the bit to be stored.
 	void InitializeBit();
-	void InitializeBitCompare();
 
 	// Pack and unpack bit functions.
 	__DATA Pack();
@@ -23,6 +22,5 @@ public:
 	// One to store the "value" and one to store the "bit of value".
 	unsigned int value[DATACOUNT];
 	unsigned int bit[DATACOUNT];
-	unsigned int bitCompare[DATACOUNT];
 };
 

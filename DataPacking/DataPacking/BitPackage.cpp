@@ -37,13 +37,6 @@ void BitPackage::InitializeBit()
 	bit[3] = 1;
 }
 
-void BitPackage::InitializeBitCompare()
-{
-	// The bitcompare is initialize to make comparison for the correct stored data.
-	bitCompare[0] = 15;
-
-}
-
 __DATA BitPackage::Pack()
 {
 	// Storing the bit inside the data that was created to store the bits.
