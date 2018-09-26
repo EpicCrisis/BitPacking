@@ -15,4 +15,6 @@ public:
 	// BitCount : the bit count of "value"
 	bool Pack(unsigned int value, unsigned int bitCount);
 	unsigned int Extract(unsigned int bitCount);
+
+	unsigned int GetData();
 };
